@@ -20,7 +20,7 @@
                            name="caption"
                            value="{{ old('caption') }}"
                            autocomplete="caption" autofocus>
-
+{{ csrf_field() }}
                     @if ($errors->has('caption'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('caption') }}</strong>
