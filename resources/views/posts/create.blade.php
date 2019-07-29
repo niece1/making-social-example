@@ -20,7 +20,7 @@
                            name="caption"
                            value="{{ old('caption') }}"
                            autocomplete="caption" autofocus>
-{{ csrf_field() }}
+
                     @if ($errors->has('caption'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('caption') }}</strong>
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="row pt-4">
-                    <button class="btn btn-primary">Add New Post</button>
+                    <button class="btn btn-warning">Add New Post</button>
                 </div>
 
             </div>
