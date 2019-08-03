@@ -13,6 +13,11 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
+    public function show(\App\Post $post)
+    {
+        return view('posts.show', compact('post'));
+    }
+
     public function index()
     {
         $users = auth()->user()->following()->pluck('profiles.user_id');
@@ -43,8 +48,5 @@ class PostsController extends Controller
         return redirect('/profile/' . auth()->user()->id);
     }
     
-    public function show(\App\Post $post)
-    {
-        return view('posts.show', compact('post'));
-    }
+    
 }
