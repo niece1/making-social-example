@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -47,7 +48,12 @@ class User extends Authenticatable
      */
     public function following()
     {
-        return $this->belongsToMany(User::class, 'followers', 'user_id', 'following_id');
+        return $this->belongsToMany(
+            User::class,
+            'followers',
+            'user_id',
+            'following_id'
+        );
     }
     
     /**
@@ -55,6 +61,26 @@ class User extends Authenticatable
      */
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'followers', 'following_id', 'user_id');
+        return $this->belongsToMany(
+            User::class, 
+            'followers',
+            'following_id',
+            'user_id'
+        );
+    }
+    
+    /**
+     * Get all posts of the follower.
+     */
+    public function postsFromFollowing()
+    {
+        return $this->hasManyThrough(
+            Post::class,
+            Follower::class,
+            'user_id',
+            'user_id',
+            'id',
+            'following_id'
+        );
     }
 }
