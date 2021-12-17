@@ -7,17 +7,14 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body class="font-sans">
+        <div class="min-h-screen bg-gray-900">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -28,9 +25,14 @@
             </header>
 
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            <div id="app">
+                <main class="container mx-auto">
+                    {{ $slot }}
+
+                    <timeline />
+                    
+                </main>
+            </div>
         </div>
     </body>
 </html>

@@ -83,4 +83,14 @@ class User extends Authenticatable
             'following_id'
         );
     }
+    
+    /**
+     * Get avatars from specified below service.
+     *
+     * @return string
+     */
+    public function avatar()
+    {
+        return 'https://www.gravatar.com/avatar/' . md5($this->email) . '?d=mp';
+    }
 }
