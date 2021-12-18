@@ -12,21 +12,21 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-    data() {
-        return {
-            posts: []
-        }
-    },
+
     methods: {
-        async getPosts() {
-            let response = await axios.get('/api/timeline')
-            this.posts = response.data.data
-        }
+        ...mapActions({
+            getPosts: 'timeline/getPosts'
+        }),
     },
-    mounted() {
+    computed: {
+        ...mapGetters({
+            posts: 'timeline/posts'
+        }),
+    },
+    mounted () {
         this.getPosts()
     }
 }
