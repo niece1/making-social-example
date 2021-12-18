@@ -7,6 +7,8 @@ Alpine.start();
 window.Vue = require('vue').default;
 import Vuex from 'vuex'
 Vue.use(Vuex)
+import VueObserveVisibility from 'vue-observe-visibility'
+Vue.use(VueObserveVisibility)
 
 // For automatic component registration
 const files = require.context('./', true, /\.vue$/i)

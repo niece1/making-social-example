@@ -17,9 +17,10 @@ export default {
         }
     },
     actions: {
-        async getPosts ({ commit }) {
-            let response = await axios.get('/api/timeline')
+        async getPosts ({ commit }, url) {
+            let response = await axios.get(url)
             commit('PUSH_POSTS', response.data.data)
+            return response
         }
     }
 }
