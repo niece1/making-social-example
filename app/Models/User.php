@@ -93,4 +93,14 @@ class User extends Authenticatable
     {
         return 'https://www.gravatar.com/avatar/' . md5($this->email) . '?d=mp';
     }
+    
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

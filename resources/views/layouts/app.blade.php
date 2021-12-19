@@ -12,6 +12,12 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script>
+        window.User = {
+            id: {{ optional(auth()->user())->id }},
+            avatar: '{{ optional(auth()->user())->avatar() }}',
+        }
+        </script>
     </head>
     <body class="font-sans">
         <div class="min-h-screen bg-gray-900">

@@ -8,9 +8,14 @@ use App\Http\Resources\PostCollection;
 
 class TimelineController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:sanctum']);
+    }
+    
     public function index(Request $request)
     {
-        $posts = $request->user()->postsFromFollowing()->paginate(5);
+        $posts = $request->user()->postsFromFollowing()->latest()->paginate(5);
         
         return new PostCollection($posts);
     }

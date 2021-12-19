@@ -1,15 +1,14 @@
 <template>
     <div>
         <div class="border-b-8 border-gray-800 p-4 w-full">
-            <post
-                v-for="post in posts"
-                :key="post.id"
-                :post="post"
-            />
-            <div v-if="posts.length" v-observe-visibility="{ callback: handleScrolledToBottomOfTimeline }">
-                
-            </div>
+            <post-create />
         </div>
+        <post
+            v-for="post in posts"
+            :key="post.id"
+            :post="post"
+        />
+        <div v-if="posts.length" v-observe-visibility="{ callback: handleScrolledToBottomOfTimeline }"></div>
     </div>
 </template>
 
