@@ -17,10 +17,22 @@ class Post extends Model
     protected $fillable = [
         'body',
         'user_id',
+        'type',
+        'original_post_id',
     ];
     
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function originalPost()
+    {
+        return $this->hasOne(Post::class, 'id', 'original_post_id');
     }
 }

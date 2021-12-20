@@ -7,6 +7,7 @@ use App\Http\Requests\PostStoreRequest;
 use Illuminate\Http\Request;
 use App\Events\PostWasCreated;
 use App\Models\Post;
+use App\Posts\PostType;
 
 class PostController extends Controller
 {
@@ -26,7 +27,9 @@ class PostController extends Controller
      */
     public function store(PostStoreRequest $request)
     {
-        $post = $request->user()->posts()->create($request->only('body'));
+        $post = $request->user()->posts()->create(array_merge($request->only('body'), [
+            'type' => PostType::POST
+        ]));
         
         broadcast(new PostWasCreated($post));
     }

@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\PostResource;
 
 class PostResource extends JsonResource
 {
@@ -18,7 +19,9 @@ class PostResource extends JsonResource
         return [
             'id' => $this->id,
             'body' => $this->body,
+            'type' => $this->type,
             'user' => new UserResource($this->user),
+            'original_post' => new PostResource($this->originalPost),
             'created_at' => $this->created_at->timestamp,
         ];
     }

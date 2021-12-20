@@ -15,7 +15,11 @@ class TimelineController extends Controller
     
     public function index(Request $request)
     {
-        $posts = $request->user()->postsFromFollowing()->latest()->paginate(5);
+        $posts = $request->user()
+                ->postsFromFollowing()
+                ->latest()
+                ->with(['user'])
+                ->paginate(5);
         
         return new PostCollection($posts);
     }

@@ -36,6 +36,13 @@ class FollowerSeeder extends Seeder
                 'created_at' => '2021-02-02 22:34:18',
                 'updated_at' => '2021-10-24 22:34:18',
             ],
+            [
+                'id' => 4,
+                'user_id' => 1,
+                'following_id' => 1,
+                'created_at' => '2020-02-24 22:34:18',
+                'updated_at' => '2020-02-24 22:34:18',
+            ],
         ];
         Follower::insert($followers);
     }
