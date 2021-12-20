@@ -9,7 +9,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 import VueObserveVisibility from 'vue-observe-visibility'
 Vue.use(VueObserveVisibility)
-Vue.prototype.$user = User // to use global var $user in Vue (set in layout app.blade.php
+Vue.prototype.$user = User // we use global user object and bind into Vue (set in layout app.blade.php)
 
 // For automatic component registration
 const files = require.context('./', true, /\.vue$/i)

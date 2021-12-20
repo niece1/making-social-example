@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
     data () {
@@ -26,8 +26,13 @@ export default {
         ...mapActions({
             getPosts: 'timeline/getPosts'
         }),
+        // for websockets
+        ...mapMutations({
+            PUSH_POSTS: 'timeline/PUSH_POSTS'
+        }),
         loadPosts () {
             this.getPosts(this.urlWithPage).then((response) => {
+                // infinite scroll
                 this.lastPage = response.data.meta.last_page
             })
         },
@@ -52,6 +57,11 @@ export default {
     },
     mounted () {
         this.loadPosts()
+
+        Echo.private(`timeline.${this.$user.id}`)
+        .listen('.PostWasCreated', (e) => {
+          this.PUSH_POSTS([e])
+        })
     }
 }
 </script>

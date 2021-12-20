@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostStoreRequest;
 use Illuminate\Http\Request;
+use App\Events\PostWasCreated;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -24,6 +26,8 @@ class PostController extends Controller
      */
     public function store(PostStoreRequest $request)
     {
-        $request->user()->posts()->create($request->only('body'));
+        $post = $request->user()->posts()->create($request->only('body'));
+        
+        broadcast(new PostWasCreated($post));
     }
 }

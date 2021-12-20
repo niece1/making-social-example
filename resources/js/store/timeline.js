@@ -8,7 +8,7 @@ export default {
     },
     getters: {
         posts (state) {
-            return state.posts
+            return state.posts.sort((a, b) => b.created_at - a.created_at)
         }
     },
     mutations: {
