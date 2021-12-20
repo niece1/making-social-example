@@ -13,7 +13,10 @@ export default {
     },
     mutations: {
         PUSH_POSTS (state, data) {
-            state.posts.push(...data)
+            state.posts.push(...data.filter((post) => {
+                //when we push posts to timeline in realtime, if they already exists - filter the data, you try to push
+                return !state.posts.map((t) => t.id).includes(post.id)
+            }))
         }
     },
     actions: {

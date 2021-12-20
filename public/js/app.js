@@ -5886,7 +5886,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     PUSH_POSTS: function PUSH_POSTS(state, data) {
       var _state$posts;
 
-      (_state$posts = state.posts).push.apply(_state$posts, _toConsumableArray(data));
+      (_state$posts = state.posts).push.apply(_state$posts, _toConsumableArray(data.filter(function (post) {
+        //when we push posts to timeline in realtime, if they already exists - filter the data, you try to push
+        return !state.posts.map(function (t) {
+          return t.id;
+        }).includes(post.id);
+      })));
     }
   },
   actions: {
