@@ -5,19 +5,15 @@
         </div>
         <div class="flex-grow">
             <textarea class="bg-gray-900 w-full outline-none text-gray-300 text-lg resize-none mb-2" v-model="form.body" placeholder="placeholder" autofocus>
-                
             </textarea>
         </div>
         <div class="flex justify-between">
             <div>act</div>
             <div>
-<button
-            type="submit"
-            class="bg-blue-500 rounded-full text-gray-300 text-center px-4 py-3 font-bold leading-none"
-          >
-            Post
-          </button>
-</div>
+                <button type="submit" class="bg-blue-500 rounded-full text-gray-300 text-center px-4 py-3 font-bold leading-none">
+                    Post
+                </button>
+            </div>
         </div>
     </form>
 </template>
@@ -40,3 +36,7 @@ export default {
     }
 }
 </script>
+
+<style lang='scss' scoped>
+
+</style>
