@@ -31,7 +31,7 @@ export default {
     methods: {
         async submit () {
             await axios.post('/api/posts', this.form)
-            this.form.body = ''
+            this.form.body = '' // for input clean after submit
         }
     }
 }

@@ -3,7 +3,7 @@
         placeholder="placeholder"
         autofocus
         @input="$emit('input', $event.target.value); resize($event)"
-        :value="value">
+        :value="value"> // for input clean after submit
     </textarea>
 </template>
 
@@ -11,7 +11,7 @@
 export default {
     props: {
         value: {
-            required: false
+            required: false // for input clean after submit
         },
         placeholder: {
             required: false,
