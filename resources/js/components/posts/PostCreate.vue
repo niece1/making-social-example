@@ -4,8 +4,7 @@
             <img :src="$user.avatar" class="w-12 h-12 rounded-full mr-3">
         </div>
         <div class="flex-grow">
-            <textarea class="bg-gray-900 w-full outline-none text-gray-300 text-lg resize-none mb-2" v-model="form.body" placeholder="placeholder" autofocus>
-            </textarea>
+            <post-create-textarea v-model="form.body" placeholder="Say something"/>
         </div>
         <div class="flex justify-between">
             <div>act</div>
@@ -32,6 +31,7 @@ export default {
     methods: {
         async submit () {
             await axios.post('/api/posts', this.form)
+            this.form.body = ''
         }
     }
 }

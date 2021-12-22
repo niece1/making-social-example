@@ -5583,7 +5583,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -5606,12 +5605,55 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/posts', _this.form);
 
               case 2:
+                _this.form.body = '';
+
+              case 3:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/posts/PostCreateTextarea.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/posts/PostCreateTextarea.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    value: {
+      required: false
+    },
+    placeholder: {
+      required: false,
+      type: String
+    }
+  },
+  methods: {
+    resize: function resize(e) {
+      e.target.style.height = 'auto';
+      e.target.style.height = "".concat(e.target.scrollHeight, "px");
     }
   }
 });
@@ -34932,6 +34974,45 @@ component.options.__file = "resources/js/components/posts/PostCreate.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/posts/PostCreateTextarea.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/posts/PostCreateTextarea.vue ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _PostCreateTextarea_vue_vue_type_template_id_2796033d_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PostCreateTextarea.vue?vue&type=template&id=2796033d&scoped=true& */ "./resources/js/components/posts/PostCreateTextarea.vue?vue&type=template&id=2796033d&scoped=true&");
+/* harmony import */ var _PostCreateTextarea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PostCreateTextarea.vue?vue&type=script&lang=js& */ "./resources/js/components/posts/PostCreateTextarea.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PostCreateTextarea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PostCreateTextarea_vue_vue_type_template_id_2796033d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _PostCreateTextarea_vue_vue_type_template_id_2796033d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "2796033d",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/posts/PostCreateTextarea.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/posts/PostUsername.vue":
 /*!********************************************************!*\
   !*** ./resources/js/components/posts/PostUsername.vue ***!
@@ -35175,6 +35256,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/posts/PostCreateTextarea.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/posts/PostCreateTextarea.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PostCreateTextarea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PostCreateTextarea.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/posts/PostCreateTextarea.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PostCreateTextarea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/posts/PostUsername.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/posts/PostUsername.vue?vue&type=script&lang=js& ***!
@@ -35315,6 +35412,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PostCreate_vue_vue_type_template_id_1c499fe3_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PostCreate_vue_vue_type_template_id_1c499fe3_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PostCreate.vue?vue&type=template&id=1c499fe3&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/posts/PostCreate.vue?vue&type=template&id=1c499fe3&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/posts/PostCreateTextarea.vue?vue&type=template&id=2796033d&scoped=true&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/posts/PostCreateTextarea.vue?vue&type=template&id=2796033d&scoped=true& ***!
+  \*********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PostCreateTextarea_vue_vue_type_template_id_2796033d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PostCreateTextarea_vue_vue_type_template_id_2796033d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PostCreateTextarea_vue_vue_type_template_id_2796033d_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PostCreateTextarea.vue?vue&type=template&id=2796033d&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/posts/PostCreateTextarea.vue?vue&type=template&id=2796033d&scoped=true&");
 
 
 /***/ }),
@@ -35505,30 +35619,23 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "flex-grow" }, [
-        _c("textarea", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
+      _c(
+        "div",
+        { staticClass: "flex-grow" },
+        [
+          _c("post-create-textarea", {
+            attrs: { placeholder: "Say something" },
+            model: {
               value: _vm.form.body,
+              callback: function ($$v) {
+                _vm.$set(_vm.form, "body", $$v)
+              },
               expression: "form.body",
             },
-          ],
-          staticClass:
-            "bg-gray-900 w-full outline-none text-gray-300 text-lg resize-none mb-2",
-          attrs: { placeholder: "placeholder", autofocus: "" },
-          domProps: { value: _vm.form.body },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "body", $event.target.value)
-            },
-          },
-        }),
-      ]),
+          }),
+        ],
+        1
+      ),
       _vm._v(" "),
       _vm._m(0),
     ]
@@ -35556,6 +35663,42 @@ var staticRenderFns = [
     ])
   },
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/posts/PostCreateTextarea.vue?vue&type=template&id=2796033d&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/posts/PostCreateTextarea.vue?vue&type=template&id=2796033d&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("textarea", {
+    staticClass:
+      "bg-gray-900 w-full outline-none text-gray-300 text-lg resize-none mb-2",
+    attrs: { placeholder: "placeholder", autofocus: "" },
+    domProps: { value: _vm.value },
+    on: {
+      input: function ($event) {
+        _vm.$emit("input", $event.target.value)
+        _vm.resize($event)
+      },
+    },
+  })
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49557,6 +49700,7 @@ var map = {
 	"./components/TestComponent.vue": "./resources/js/components/TestComponent.vue",
 	"./components/posts/Post.vue": "./resources/js/components/posts/Post.vue",
 	"./components/posts/PostCreate.vue": "./resources/js/components/posts/PostCreate.vue",
+	"./components/posts/PostCreateTextarea.vue": "./resources/js/components/posts/PostCreateTextarea.vue",
 	"./components/posts/PostUsername.vue": "./resources/js/components/posts/PostUsername.vue",
 	"./components/posts/options/PostOptionPost.vue": "./resources/js/components/posts/options/PostOptionPost.vue",
 	"./components/posts/options/PostOptionQuote.vue": "./resources/js/components/posts/options/PostOptionQuote.vue",
