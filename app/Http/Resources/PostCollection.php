@@ -25,4 +25,29 @@ class PostCollection extends ResourceCollection
             'data' => $this->collection
         ];
     }
+
+    public function with($request)
+    {
+        return [
+            'meta' => [
+                'likes' => $this->likes($request),
+            ]
+        ];
+    }
+
+    protected function likes($request)
+    {
+        //if user not logged in, we don't need it's likes number so we return empty array
+        if (!$user = $request->user()) {
+            return [];
+        }
+
+        return $user->likes()
+            ->whereIn(
+                'post_id',
+                $this->collection->pluck('id')->merge($this->collection->pluck('original_post_id'))
+            )
+            ->pluck('post_id')
+            ->toArray();
+    }
 }

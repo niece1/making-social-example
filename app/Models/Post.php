@@ -12,7 +12,7 @@ class Post extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
         'body',
@@ -34,5 +34,13 @@ class Post extends Model
     public function originalPost()
     {
         return $this->hasOne(Post::class, 'id', 'original_post_id');
+    }
+
+    /**
+     * Get likes associated with specified post.
+     */
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 }

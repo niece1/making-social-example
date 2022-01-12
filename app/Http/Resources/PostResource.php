@@ -21,6 +21,7 @@ class PostResource extends JsonResource
             'body' => $this->body,
             'type' => $this->type,
             'user' => new UserResource($this->user),
+            'likes_count' => $this->likes->count(),
             'original_post' => new PostResource($this->originalPost),
             'created_at' => $this->created_at->timestamp,
         ];

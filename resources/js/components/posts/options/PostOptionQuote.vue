@@ -7,6 +7,7 @@
             <post-username :user="post.user" />
             <p class="text-gray-300 whitespace-pre-wrap">{{ post.body }}</p>
             <post class="border border-gray-700 rounded-lg mt-4" :post="post.original_post" />
+            <action-faction  :post="post" />
         </div>
     </div>
 </template>

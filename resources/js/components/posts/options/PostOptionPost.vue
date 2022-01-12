@@ -6,6 +6,8 @@
         <div class="flex-grow">
             <post-username :user="post.user" />   
             <p class="text-gray-300 whitespace-pre-wrap">{{ post.body }}</p>
+            <action-faction :post="post" />
+            
         </div>
     </div>
 </template>

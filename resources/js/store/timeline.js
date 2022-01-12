@@ -23,6 +23,8 @@ export default {
         async getPosts ({ commit }, url) {
             let response = await axios.get(url)
             commit('PUSH_POSTS', response.data.data)
+            //root: true is a 3d arg needed because we access likes module outside timeline
+            commit('likes/PUSH_LIKES', response.data.meta.likes, { root: true })
             return response
         }
     }
