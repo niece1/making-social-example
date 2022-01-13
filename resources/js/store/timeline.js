@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { get } from 'lodash'
 
 export default {
     namespaced: true,
@@ -17,7 +18,18 @@ export default {
                 //when we push posts to timeline in realtime, if they already exists - filter the data, you try to push
                 return !state.posts.map((t) => t.id).includes(post.id)
             }))
-        }
+        },
+        SET_LIKES (state, { id, count }) {
+            state.posts = state.posts.map((p) => {
+                if (p.id === id) {
+                    p.likes_count = count
+                }
+                if (get(p.original_post, 'id') === id) {
+                    p.original_post.likes_count = count
+                }
+            return p
+            })
+        },
     },
     actions: {
         async getPosts ({ commit }, url) {

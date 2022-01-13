@@ -30,3 +30,13 @@ const app = new Vue({
     el: '#app',
     store
 });
+
+Echo.channel('posts')
+    .listen('.LikesWereUpdated', (e) => {
+        //if user id on this event
+        if (e.user_id === User.id) {
+            store.dispatch('likes/syncLike', e.id)
+        }
+
+        store.commit('timeline/SET_LIKES', e)
+    })

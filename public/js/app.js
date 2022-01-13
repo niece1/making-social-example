@@ -6026,6 +6026,14 @@ var app = new Vue({
   el: '#app',
   store: store
 });
+Echo.channel('posts').listen('.LikesWereUpdated', function (e) {
+  //if user id on this event
+  if (e.user_id === User.id) {
+    store.dispatch('likes/syncLike', e.id);
+  }
+
+  store.commit('timeline/SET_LIKES', e);
+});
 
 /***/ }),
 
@@ -6103,6 +6111,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 
+ //mens lodash library without functions
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   namespaced: true,
@@ -6120,6 +6129,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var _state$likes;
 
       (_state$likes = state.likes).push.apply(_state$likes, _toConsumableArray(data));
+    },
+    PUSH_LIKE: function PUSH_LIKE(state, id) {
+      state.likes.push(id);
+    },
+    POP_LIKE: function POP_LIKE(state, id) {
+      state.likes = (0,lodash__WEBPACK_IMPORTED_MODULE_2__.without)(state.likes, id); //give us back the list likes w/o particular id
     }
   },
   actions: {
@@ -6158,6 +6173,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
         }, _callee2);
       }))();
+    },
+    //by including state, we can read it from our actions
+    syncLike: function syncLike(_ref, id) {
+      var commit = _ref.commit,
+          state = _ref.state;
+
+      if (state.likes.includes(id)) {
+        commit('POP_LIKE', id);
+        return;
+      } // otherwise add like to the list of likes
+
+
+      commit('PUSH_LIKE', id);
     }
   }
 });
@@ -6179,6 +6207,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -6196,6 +6226,7 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -6220,17 +6251,32 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           return t.id;
         }).includes(post.id);
       })));
+    },
+    SET_LIKES: function SET_LIKES(state, _ref) {
+      var id = _ref.id,
+          count = _ref.count;
+      state.posts = state.posts.map(function (p) {
+        if (p.id === id) {
+          p.likes_count = count;
+        }
+
+        if ((0,lodash__WEBPACK_IMPORTED_MODULE_2__.get)(p.original_post, 'id') === id) {
+          p.original_post.likes_count = count;
+        }
+
+        return p;
+      });
     }
   },
   actions: {
-    getPosts: function getPosts(_ref, url) {
+    getPosts: function getPosts(_ref2, url) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var commit, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                commit = _ref.commit;
+                commit = _ref2.commit;
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get(url);
 
