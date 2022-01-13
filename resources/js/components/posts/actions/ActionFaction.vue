@@ -4,7 +4,7 @@
             reply
     </li>
     <li class="w3/12">
-            repost
+            <action-repost  :post="post" />
     </li>
     <li class="w3/12">
           <action-like  :post="post" />
