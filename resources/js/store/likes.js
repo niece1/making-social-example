@@ -29,8 +29,7 @@ export default {
   },
 
   actions: {
-    //async because we need network requests,
-    //_ is a convention to add required thin we don'tneed (no necessity to commit, because we use realtime)
+    //_ is a convention to add required thing we don't need (no necessity to commit, because we use realtime)
     async likePost (_, post) {
       await axios.post(`/api/posts/${post.id}/likes`)
     },

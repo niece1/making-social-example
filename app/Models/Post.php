@@ -48,4 +48,9 @@ class Post extends Model
     {
         return $this->hasMany(Post::class, 'original_post_id');
     }
+
+    public function repostedPost()
+    {
+        return $this->hasOne(Post::class, 'original_post_id', 'id');
+    }
 }

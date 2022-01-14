@@ -120,4 +120,11 @@ class User extends Authenticatable
     {
         return $this->likes->contains('post_id', $post->id);
     }
+
+    public function reposts()
+    {
+        return $this->hasMany(Post::class)
+            ->where('type', PostType::REPOST)
+            ->orWhere('type', PostType::QUOTE);
+    }
 }

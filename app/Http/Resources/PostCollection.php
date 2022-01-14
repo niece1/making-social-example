@@ -31,6 +31,7 @@ class PostCollection extends ResourceCollection
         return [
             'meta' => [
                 'likes' => $this->likes($request),
+                'reposts' => $this->reposts($request),
             ]
         ];
     }
@@ -48,6 +49,21 @@ class PostCollection extends ResourceCollection
                 $this->collection->pluck('id')->merge($this->collection->pluck('original_post_id'))
             )
             ->pluck('post_id')
+            ->toArray();
+    }
+
+    protected function reposts($request)
+    {
+        if (!$user = $request->user()) {
+            return [];
+        }
+
+        return $user->reposts()
+            ->whereIn(
+                'original_post_id',
+                $this->collection->pluck('id')->merge($this->collection->pluck('original_post_id'))
+            )
+            ->pluck('original_post_id')
             ->toArray();
     }
 }

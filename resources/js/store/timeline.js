@@ -37,6 +37,7 @@ export default {
             commit('PUSH_POSTS', response.data.data)
             //root: true is a 3d arg needed because we access likes module outside timeline
             commit('likes/PUSH_LIKES', response.data.meta.likes, { root: true })
+            commit('reposts/PUSH_REPOSTS', response.data.meta.reposts, { root: true })
             return response
         }
     }
