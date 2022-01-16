@@ -30,6 +30,22 @@ export default {
             return p
             })
         },
+        SET_REPOSTS (state, { id, count }) {
+            state.posts = state.posts.map((p) => {
+                if (p.id === id) {
+                    p.reposts_count = count
+            }
+            if (get(p.original_post, 'id') === id) {
+                p.original_post.reposts_count = count
+            }
+                return p
+            })
+        },
+        POP_POST (state, id) {
+            state.posts = state.posts.filter((p) => {
+                return p.id !== id
+            })
+        },
     },
     actions: {
         async getPosts ({ commit }, url) {

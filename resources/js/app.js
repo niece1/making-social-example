@@ -41,3 +41,13 @@ Echo.channel('posts')
 
         store.commit('timeline/SET_LIKES', e)
     })
+    .listen('.RepostWasUpdated', (e) => {
+        if (e.user_id === User.id) {
+            store.dispatch('reposts/syncRepost', e.id)
+        }
+
+        store.commit('timeline/SET_REPOSTS', e)
+    })
+    .listen('.PostWasDeleted', (e) => {
+        store.commit('timeline/POP_POST', e.id)
+    })

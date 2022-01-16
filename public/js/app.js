@@ -6220,6 +6220,14 @@ Echo.channel('posts').listen('.LikesWereUpdated', function (e) {
   }
 
   store.commit('timeline/SET_LIKES', e);
+}).listen('.RepostWasUpdated', function (e) {
+  if (e.user_id === User.id) {
+    store.dispatch('reposts/syncRepost', e.id);
+  }
+
+  store.commit('timeline/SET_REPOSTS', e);
+}).listen('.PostWasDeleted', function (e) {
+  store.commit('timeline/POP_POST', e.id);
 });
 
 /***/ }),
@@ -6427,6 +6435,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var _state$reposts;
 
       (_state$reposts = state.reposts).push.apply(_state$reposts, _toConsumableArray(data));
+    },
+    PUSH_REPOST: function PUSH_REPOST(state, id) {
+      state.reposts.push(id);
+    },
+    POP_REPOST: function POP_REPOST(state, id) {
+      state.reposts = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.without)(state.reposts, id);
     }
   },
   actions: {
@@ -6463,6 +6477,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
         }, _callee2);
       }))();
+    },
+    syncRepost: function syncRepost(_ref, id) {
+      var commit = _ref.commit,
+          state = _ref.state;
+
+      if (state.reposts.includes(id)) {
+        commit('POP_REPOST', id);
+        return;
+      }
+
+      commit('PUSH_REPOST', id);
     }
   }
 });
@@ -6543,17 +6568,37 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         return p;
       });
+    },
+    SET_REPOSTS: function SET_REPOSTS(state, _ref2) {
+      var id = _ref2.id,
+          count = _ref2.count;
+      state.posts = state.posts.map(function (p) {
+        if (p.id === id) {
+          p.reposts_count = count;
+        }
+
+        if ((0,lodash__WEBPACK_IMPORTED_MODULE_2__.get)(p.original_post, 'id') === id) {
+          p.original_post.reposts_count = count;
+        }
+
+        return p;
+      });
+    },
+    POP_POST: function POP_POST(state, id) {
+      state.posts = state.posts.filter(function (p) {
+        return p.id !== id;
+      });
     }
   },
   actions: {
-    getPosts: function getPosts(_ref2, url) {
+    getPosts: function getPosts(_ref3, url) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var commit, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                commit = _ref2.commit;
+                commit = _ref3.commit;
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get(url);
 
