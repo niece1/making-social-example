@@ -12,7 +12,8 @@
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "pusher/pusher-php-server": "^5.0"
+        "pusher/pusher-php-server": "^5.0",
+        "spatie/laravel-medialibrary": "^8.0.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
