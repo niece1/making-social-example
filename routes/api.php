@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\TimelineController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\LikeController;
 use App\Http\Controllers\Api\RepostController;
+use App\Http\Controllers\Api\MediaTypesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,4 @@ Route::post('/posts/{post}/likes', [LikeController::class, 'store']);
 Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy']);
 Route::post('/posts/{post}/reposts', [RepostController::class, 'store']);
 Route::delete('/posts/{post}/reposts', [RepostController::class, 'destroy']);
+Route::get('/media/types', [MediaTypesController::class, 'index']);
