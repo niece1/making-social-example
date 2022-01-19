@@ -53,4 +53,12 @@ class Post extends Model
     {
         return $this->hasOne(Post::class, 'original_post_id', 'id');
     }
+
+    /**
+     * Undocumented function
+     */
+    public function media()
+    {
+        return $this->hasMany(PostMedia::class);
+    }
 }
