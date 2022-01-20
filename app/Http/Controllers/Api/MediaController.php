@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PostMedia;
 use App\Http\Requests\MediaStoreRequest;
+use App\Http\Resources\PostMediaCollection;
 
 class MediaController extends Controller
 {

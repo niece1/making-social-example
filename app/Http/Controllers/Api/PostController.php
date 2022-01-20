@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Events\PostWasCreated;
 use App\Models\Post;
 use App\Posts\PostType;
+use App\Models\PostMedia;
 
 class PostController extends Controller
 {
@@ -30,6 +31,9 @@ class PostController extends Controller
         $post = $request->user()->posts()->create(array_merge($request->only('body'), [
             'type' => PostType::POST
         ]));
+        foreach($request->media as $id) {
+            $post->media()->save(PostMedia::find($id));
+        }
         
         broadcast(new PostWasCreated($post));
     }

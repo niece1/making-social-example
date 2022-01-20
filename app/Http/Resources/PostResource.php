@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\PostResource;
+use App\Http\Resources\MediaCollection;
 
 class PostResource extends JsonResource
 {
@@ -24,6 +25,7 @@ class PostResource extends JsonResource
             'likes_count' => $this->likes->count(),
             'reposts_count' => $this->reposts->count(),
             'original_post' => new PostResource($this->originalPost),
+            'media' => new MediaCollection($this->media),
             'created_at' => $this->created_at->timestamp,
         ];
     }
