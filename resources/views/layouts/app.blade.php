@@ -36,7 +36,7 @@
                     {{ $slot }}
 
                     <timeline />
-                    
+                    <modals-container />
                 </main>
             </div>
         </div>

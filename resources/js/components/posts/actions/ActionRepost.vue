@@ -8,7 +8,7 @@
       <dropdown-link @click.prevent="repost_unrepost">
         Repost
       </dropdown-link>
-      <dropdown-link>
+      <dropdown-link @click.prevent="$modal.show(RepostModal, { post })">
         Repost with comment
       </dropdown-link>
     </dropdown>
@@ -18,11 +18,17 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import RepostModal from '../../modals/RepostModal'
 export default {
     props: {
       post: {
         required: true,
         type: Object
+      }
+    },
+    data () {
+      return {
+        RepostModal
       }
     },
     computed: {
