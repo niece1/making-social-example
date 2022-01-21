@@ -20,23 +20,30 @@
 
 <script>
   import axios from 'axios'
-
-
+  import { mapActions } from 'vuex'
   import create from '../../mixins/create'
 
   export default {
     mixins: [
       create
     ],
-
     props: {
       post: {
         required: true,
         type: Object
       }
     },
-
-
-
+    methods: {
+      ...mapActions({
+        quotePost: 'timeline/quotePost'
+      }),
+      async post () {
+        await this.quotePost({
+          post: this.post,
+          data: this.form
+        })
+        this.$emit('success')
+      }
     }
+  }
 </script>

@@ -55,6 +55,10 @@ export default {
             commit('likes/PUSH_LIKES', response.data.meta.likes, { root: true })
             commit('reposts/PUSH_REPOSTS', response.data.meta.reposts, { root: true })
             return response
+        },
+        // _ means we don't need to commit
+        async quotePost (_, { post, data }) {
+            await axios.post(`/api/posts/${post.id}/quotes`, data)
         }
     }
 }
