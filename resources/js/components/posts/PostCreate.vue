@@ -2,8 +2,9 @@
     <form class="flex" @submit.prevent="submit">
         <img :src="$user.avatar" class="w-12 h-12 rounded-full mr-3">
         <div class="flex-grow">
-            <post-create-textarea v-model="form.body" placeholder="Say something"/>
-        </div>
+            <post-create-textarea v-model="form.body" placeholder="Say something" />
+            <media-progress-bar class="mb-4" :progress="media.progress" v-if="media.progress" />
+        
         <!-- if length(has any images), show component -->
         <image-preview :images="media.images" v-if="media.images.length" @removed="removeImage" />
         <video-preview :video="media.video" v-if="media.video" @removed="removeVideo" />
@@ -19,6 +20,7 @@
                     Post
                 </button>
             </div>
+        </div>
         </div>
     </form>
 </template>
@@ -45,10 +47,11 @@ export default {
     },
     methods: {
         async submit () {
-          
+            // if needs to prevent showing progress bar whe we click Post button w/o media attached
+          if (this.media.images.length || this.media.video) {
         let media = await this.uploadMedia()
         this.form.media = media.data.data.map(r => r.id)
-     
+     }
 
       await axios.post('api/posts', this.form)
 
@@ -56,13 +59,18 @@ export default {
       this.form.media = []
       this.media.video = null
       this.media.images = []
+      this.media.progress = 0
         },
+        handleUploadProgress (event) {
+      this.media.progress = parseInt(Math.round((event.loaded / event.total) * 100))
+    },
         async uploadMedia () {
             return await axios.post('/api/media', this.buildMediaForm(), {
                 // we add headers because we upload files
                 headers: {
                     'Content-Type': 'multipart/form-data'
-                }
+                },
+                onUploadProgress: this.handleUploadProgress
             })
         },
         buildMediaForm () {
