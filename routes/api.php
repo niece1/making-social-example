@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\RepostController;
 use App\Http\Controllers\Api\MediaTypesController;
 use App\Http\Controllers\Api\MediaController;
 use App\Http\Controllers\Api\QuoteController;
+use App\Http\Controllers\Api\ReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,4 @@ Route::delete('/posts/{post}/reposts', [RepostController::class, 'destroy']);
 Route::post('/media', [MediaController::class, 'store']);
 Route::get('/media/types', [MediaTypesController::class, 'index']);
 Route::post('/posts/{post}/quotes', [QuoteController::class, 'store']);
+Route::post('/posts/{post}/replies', [ReplyController::class, 'store']);

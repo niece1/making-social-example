@@ -8,12 +8,10 @@ export default {
             },
             media: {
                 images: [],
-                video: null
+                video: null,
+                progress: 0
             },
-            mediaTypes: {
-                images: [],
-                video: null
-            }
+            mediaTypes: {}
         }
     },
     methods: {
@@ -24,7 +22,7 @@ export default {
         this.form.media = media.data.data.map(r => r.id)
      }
 
-      await this.post() // used in PostCreate methods post()
+      await this.postEntity() // used in PostCreate, RepostCreate methods postEntity()
 
       this.form.body = ''
       this.form.media = []

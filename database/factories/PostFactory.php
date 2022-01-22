@@ -19,7 +19,8 @@ class PostFactory extends Factory
                 return User::all()->random();
             },
             'body' => $this->faker->text(500),
-            'type' => ['post', 'repost', 'quote'][rand(0, 2)],
+            'type' => 'post',
+            //'type' => ['post', 'repost', 'quote'][rand(0, 2)],
         ];
     }
 }

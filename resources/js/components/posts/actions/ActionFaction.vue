@@ -1,13 +1,13 @@
 <template>
   <ul class="flex mt-4">
     <li class="w3/12">
-            reply
+      <action-reply  :post="post" />
     </li>
     <li class="w3/12">
-            <action-repost  :post="post" />
+      <action-repost  :post="post" />
     </li>
     <li class="w3/12">
-          <action-like  :post="post" />
+      <action-like  :post="post" />
     </li>
   </ul>
 </template>

@@ -61,3 +61,6 @@ Echo.channel('posts')
     .listen('.PostWasDeleted', (e) => {
         store.commit('timeline/POP_POST', e.id)
     })
+    .listen('.RepliesWereUpdated', (e) => {
+        store.commit('timeline/SET_REPLIES', e)
+    })

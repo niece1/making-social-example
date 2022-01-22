@@ -12,6 +12,11 @@ use App\Events\PostWasDeleted;
 
 class RepostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:sanctum']);
+    }
+    
     public function store(Post $post, Request $request)
     {
         $repost = $request->user()->posts()->create([

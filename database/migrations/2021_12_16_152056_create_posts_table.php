@@ -20,12 +20,14 @@ class CreatePostsTable extends Migration
             //in some types of posts (e.g. repost) body may be nullable
             $table->text('body')->nullable();
             $table->unsignedBigInteger('original_post_id')->index()->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('type');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             //if original post deleted, also delete reposted(quoted) post
             $table->foreign('original_post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->foreign('parent_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 

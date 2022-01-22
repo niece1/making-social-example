@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Model
 {
@@ -19,6 +20,7 @@ class Post extends Model
         'user_id',
         'type',
         'original_post_id',
+        'parent_id',
     ];
     
     public function user()
@@ -60,5 +62,21 @@ class Post extends Model
     public function media()
     {
         return $this->hasMany(PostMedia::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Post::class, 'parent_id');
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param Builder $builder
+     * @return void
+     */
+    public function scopeParent(Builder $builder)
+    {
+        return $builder->whereNull('parent_id');
     }
 }

@@ -26,6 +26,7 @@ class PostResource extends JsonResource
             'reposts_count' => $this->reposts->count(),
             'original_post' => new PostResource($this->originalPost),
             'media' => new MediaCollection($this->media),
+            'replies_count' => $this->replies->count(),
             'created_at' => $this->created_at->timestamp,
         ];
     }

@@ -4,7 +4,6 @@
         <div class="flex-grow">
             <post-create-textarea v-model="form.body" placeholder="Say something" />
             <media-progress-bar class="mb-4" :progress="media.progress" v-if="media.progress" />
-        
         <!-- if length(has any images), show component -->
         <image-preview :images="media.images" v-if="media.images.length" @removed="removeImage" />
         <video-preview :video="media.video" v-if="media.video" @removed="removeVideo" />
@@ -33,9 +32,8 @@ export default {
     mixins: [
       create
     ],
-
     methods: {
-      async post () {
+      async postEntity () {
         await axios.post('/api/posts', this.form)
       }
     }
