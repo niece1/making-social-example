@@ -8,6 +8,7 @@ use App\Posts\PostType;
 use App\Models\Post;
 use App\Models\PostMedia;
 use App\Events\RepliesWereUpdated;
+use App\Notifications\PostReplied;
 
 class ReplyController extends Controller
 {
@@ -25,6 +26,10 @@ class ReplyController extends Controller
 
         foreach($request->media as $id) {
             $reply->media()->save(PostMedia::find($id));
+        }
+
+        if ($request->user()->id !== $post->user_id) {
+            $post->user->notify(new PostReplied($request->user(), $reply));
         }
 
         broadcast(new RepliesWereUpdated($post));

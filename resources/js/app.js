@@ -28,13 +28,14 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 import timeline from './store/timeline'
 import likes from './store/likes'
 import reposts from './store/reposts'
+import notifications from './store/notifications'
 
 const store = new Vuex.Store({
     modules: {
         timeline,
         likes,
         reposts,
-        //notifications
+        notifications
     }
 })
 const app = new Vue({
@@ -48,19 +49,23 @@ Echo.channel('posts')
         if (e.user_id === User.id) {
             store.dispatch('likes/syncLike', e.id)
         }
-
         store.commit('timeline/SET_LIKES', e)
+        //for realtime likes in notifications
+        store.commit('notifications/SET_LIKES', e)
     })
     .listen('.RepostWasUpdated', (e) => {
         if (e.user_id === User.id) {
             store.dispatch('reposts/syncRepost', e.id)
         }
-
         store.commit('timeline/SET_REPOSTS', e)
+        //for realtime reposts in notifications
+        store.commit('notifications/SET_REPOSTS', e)
     })
     .listen('.PostWasDeleted', (e) => {
         store.commit('timeline/POP_POST', e.id)
     })
     .listen('.RepliesWereUpdated', (e) => {
         store.commit('timeline/SET_REPLIES', e)
+        //for realtime replies in notifications
+        store.commit('notifications/SET_REPLIES', e)
     })

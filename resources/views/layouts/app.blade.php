@@ -34,8 +34,6 @@
             <div id="app">
                 <main class="container mx-auto">
                     {{ $slot }}
-
-                    <timeline />
                     <modals-container />
                 </main>
             </div>

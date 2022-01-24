@@ -9,6 +9,7 @@ use App\Events\PostWasCreated;
 use App\Models\Post;
 use App\Posts\PostType;
 use App\Models\PostMedia;
+use App\Http\Resources\PostCollection;
 
 class PostController extends Controller
 {
@@ -18,6 +19,30 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:sanctum'])->only(['store']);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function index(Request $request)
+    {
+        $posts = Post::with([
+            'user',
+            'likes',
+            'reposts',
+            'replies',
+            'media.baseMedia',
+            'originalPost.user',
+            'originalPost.likes',
+            'originalPost.reposts',
+            'originalPost.media.baseMedia',
+        ])
+            ->find(explode(',', $request->ids));
+
+        return new PostCollection($posts);
     }
     
     /**

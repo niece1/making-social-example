@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Events\LikesWereUpdated;
+use App\Notifications\PostLiked;
 
 class LikeController extends Controller
 {
@@ -18,6 +19,9 @@ class LikeController extends Controller
         $request->user()->likes()->create([
             'post_id' => $post->id
         ]);
+        if ($request->user()->id !== $post->user_id) {
+            $post->user->notify(new PostLiked($request->user(), $post));
+        }
 
         broadcast(new LikesWereUpdated($request->user(), $post));
     }
