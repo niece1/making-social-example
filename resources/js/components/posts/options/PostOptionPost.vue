@@ -3,7 +3,7 @@
         <img :src="post.user.avatar" class="w-12 h-12 mr-3 rounded-full">
         <div class="flex-grow">
             <post-username :user="post.user" />   
-            <p class="text-gray-300 whitespace-pre-wrap">{{ post.body }}</p>
+            <post-body :post="post" />
             <div class="flex flex-wrap mb-4 mt-4" v-if="images.length">
                 <div class="w-6/12 flex-grow" v-for="(image, index) in images" :key="index">
                     <img :src="image.url" class="rounded-lg">

@@ -19,7 +19,7 @@ class TimelineController extends Controller
                 ->postsFromFollowing()
                 ->parent()
                 ->latest()
-                ->with(['user', 'likes', 'reposts', 'replies', 'media.baseMedia', 'originalPost.user', 'originalPost.likes', 'originalPost.reposts', 'originalPost.media.baseMedia',])
+                ->with(['user', 'likes', 'reposts', 'replies', 'facilities', 'media.baseMedia', 'originalPost.user', 'originalPost.likes', 'originalPost.reposts', 'originalPost.media.baseMedia',])
                 ->paginate(5);
         
         return new PostCollection($posts);

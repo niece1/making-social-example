@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\MediaCollection;
+use App\Http\Resources\FacilityCollection;
 
 class PostResource extends JsonResource
 {
@@ -27,6 +28,7 @@ class PostResource extends JsonResource
             'original_post' => new PostResource($this->originalPost),
             'media' => new MediaCollection($this->media),
             'replies_count' => $this->replies->count(),
+            'facilities' => new FacilityCollection($this->facilities),
             'created_at' => $this->created_at->timestamp,
         ];
     }

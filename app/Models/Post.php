@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Posts\FacilityExtractor;
+use App\Posts\FacilityTypes;
 
 class Post extends Model
 {
@@ -78,5 +80,29 @@ class Post extends Model
     public function scopeParent(Builder $builder)
     {
         return $builder->whereNull('parent_id');
+    }
+
+    /**
+     * Undocumented function
+     */
+    public function facilities()
+    {
+        return $this->hasMany(Facility::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::created(function (Post $post) {
+            $post->facilities()->createMany(
+                (new FacilityExtractor($post->body))->getAllFacilities()
+            );
+        });
+    }
+
+    public function mentions()
+    {
+        return $this->hasMany(Facility::class)
+            ->whereType(FacilityTypes::MENTION);
     }
 }

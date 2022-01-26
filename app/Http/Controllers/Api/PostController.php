@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Posts\PostType;
 use App\Models\PostMedia;
 use App\Http\Resources\PostCollection;
+use App\Notifications\PostMentionedIn;
 
 class PostController extends Controller
 {
@@ -58,6 +59,11 @@ class PostController extends Controller
         ]));
         foreach($request->media as $id) {
             $post->media()->save(PostMedia::find($id));
+        }
+        foreach ($post->mentions->users() as $user) {
+            if ($request->user()->id !== $user->id) {
+                $user->notify(new PostMentionedIn($request->user(), $post));
+            }
         }
         
         broadcast(new PostWasCreated($post));
