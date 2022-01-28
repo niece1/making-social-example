@@ -45,6 +45,11 @@ class PostController extends Controller
 
         return new PostCollection($posts);
     }
+
+    public function show(Post $post)
+    {
+        return new PostCollection(collect([$post])->merge($post->parents()));
+    }
     
     /**
      * Undocumented function

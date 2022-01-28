@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,4 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('chat.show');

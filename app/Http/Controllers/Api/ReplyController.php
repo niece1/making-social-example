@@ -9,12 +9,23 @@ use App\Models\Post;
 use App\Models\PostMedia;
 use App\Events\RepliesWereUpdated;
 use App\Notifications\PostReplied;
+use App\Http\Resources\PostCollection;
 
 class ReplyController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:sanctum']);
+        $this->middleware(['auth:sanctum'])->only(['store']);
+    }
+    
+    /**
+     * Show all replies for particular post.
+     *
+     *
+     */
+    public function index(Post $post)
+    {
+        return new PostCollection($post->replies);
     }
 
     public function store(Post $post, Request $request)

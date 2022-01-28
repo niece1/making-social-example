@@ -105,4 +105,20 @@ class Post extends Model
         return $this->hasMany(Facility::class)
             ->whereType(FacilityTypes::MENTION);
     }
+
+    public function parentPost()
+    {
+        return $this->belongsTo(Post::class, 'parent_id');
+    }
+
+    public function parents()
+    {
+        $base = $this;
+        $parents = [];
+        while ($base->parentPost) {
+            $parents[] = $base->parentPost;
+            $base = $base->parentPost;
+        }
+        return collect($parents);
+    }
 }

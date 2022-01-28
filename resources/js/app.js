@@ -29,13 +29,15 @@ import timeline from './store/timeline'
 import likes from './store/likes'
 import reposts from './store/reposts'
 import notifications from './store/notifications'
+import chat from './store/chat'
 
 const store = new Vuex.Store({
     modules: {
         timeline,
         likes,
         reposts,
-        notifications
+        notifications,
+        chat
     }
 })
 const app = new Vue({
@@ -52,6 +54,7 @@ Echo.channel('posts')
         store.commit('timeline/SET_LIKES', e)
         //for realtime likes in notifications
         store.commit('notifications/SET_LIKES', e)
+        store.commit('chat/SET_LIKES', e)
     })
     .listen('.RepostWasUpdated', (e) => {
         if (e.user_id === User.id) {
@@ -60,6 +63,7 @@ Echo.channel('posts')
         store.commit('timeline/SET_REPOSTS', e)
         //for realtime reposts in notifications
         store.commit('notifications/SET_REPOSTS', e)
+        store.commit('chat/SET_REPOSTS', e)
     })
     .listen('.PostWasDeleted', (e) => {
         store.commit('timeline/POP_POST', e.id)
@@ -68,4 +72,5 @@ Echo.channel('posts')
         store.commit('timeline/SET_REPLIES', e)
         //for realtime replies in notifications
         store.commit('notifications/SET_REPLIES', e)
+        store.commit('chat/SET_REPLIES', e)
     })

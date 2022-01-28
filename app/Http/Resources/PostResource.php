@@ -29,6 +29,9 @@ class PostResource extends JsonResource
             'media' => new MediaCollection($this->media),
             'replies_count' => $this->replies->count(),
             'facilities' => new FacilityCollection($this->facilities),
+            'parent_id' => $this->parent_id,
+            'parent_ids' => $this->parents()->pluck('id')->toArray(),
+            'replying_to' => optional(optional($this->parentPost)->user)->username,
             'created_at' => $this->created_at->timestamp,
         ];
     }
