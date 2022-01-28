@@ -11,7 +11,7 @@ use App\Posts\FacilityTypes;
 class Post extends Model
 {
     use HasFactory;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,12 +24,12 @@ class Post extends Model
         'original_post_id',
         'parent_id',
     ];
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    
+
     /**
      * Undocumented function
      *

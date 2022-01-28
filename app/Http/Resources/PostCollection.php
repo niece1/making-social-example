@@ -8,11 +8,11 @@ use App\Http\Resources\PostResource;
 class PostCollection extends ResourceCollection
 {
     /**
-     * 
+     *
      * @var type
      */
     public $collects = PostResource::class;
-    
+
     /**
      * Transform the resource collection into an array and wraps into data.
      *

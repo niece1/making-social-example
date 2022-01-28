@@ -17,7 +17,7 @@ class ReplyController extends Controller
     {
         $this->middleware(['auth:sanctum'])->only(['store']);
     }
-    
+
     /**
      * Show all replies for particular post.
      *
@@ -35,7 +35,7 @@ class ReplyController extends Controller
             'parent_id' => $post->id,
         ]));
 
-        foreach($request->media as $id) {
+        foreach ($request->media as $id) {
             $reply->media()->save(PostMedia::find($id));
         }
 

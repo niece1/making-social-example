@@ -14,8 +14,10 @@ use App\Http\Resources\PostResource;
 
 class PostWasCreated implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
-    
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
+
     protected $post;
 
     /**
@@ -27,7 +29,7 @@ class PostWasCreated implements ShouldBroadcast
     {
         $this->post = $post;
     }
-    
+
     /**
      * Overrides default event name given by the Laravel exposed in Websockets dashboard.
      *
@@ -37,7 +39,7 @@ class PostWasCreated implements ShouldBroadcast
     {
         return 'PostWasCreated';
     }
-    
+
     /**
      * Get serialized exact post structure we use in Vue component.
      *

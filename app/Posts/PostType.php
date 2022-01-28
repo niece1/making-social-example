@@ -9,7 +9,7 @@ namespace App\Posts;
  */
 class PostType
 {
-    const POST = 'post';
-    const REPOST = 'repost';
-    const QUOTE = 'quote';
+    public const POST = 'post';
+    public const REPOST = 'repost';
+    public const QUOTE = 'quote';
 }

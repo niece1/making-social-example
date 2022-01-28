@@ -14,14 +14,14 @@ class FacilityExtractor
     protected $string;
 
     /**
-     * 
+     *
      */
-    const HASHTAG_REGEX = '/(?!\s)#([A-Za-z]\w*)\b/';
+    public const HASHTAG_REGEX = '/(?!\s)#([A-Za-z]\w*)\b/';
 
     /**
-     * 
+     *
      */
-    const MENTION_REGEX = '/(?=[^\w!])@(\w+)\b/';
+    public const MENTION_REGEX = '/(?=[^\w!])@(\w+)\b/';
 
     /**
      * Undocumented function

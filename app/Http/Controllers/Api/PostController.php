@@ -50,7 +50,7 @@ class PostController extends Controller
     {
         return new PostCollection(collect([$post])->merge($post->parents()));
     }
-    
+
     /**
      * Undocumented function
      *
@@ -62,7 +62,7 @@ class PostController extends Controller
         $post = $request->user()->posts()->create(array_merge($request->only('body'), [
             'type' => PostType::POST
         ]));
-        foreach($request->media as $id) {
+        foreach ($request->media as $id) {
             $post->media()->save(PostMedia::find($id));
         }
         foreach ($post->mentions->users() as $user) {
@@ -70,7 +70,7 @@ class PostController extends Controller
                 $user->notify(new PostMentionedIn($request->user(), $post));
             }
         }
-        
+
         broadcast(new PostWasCreated($post));
     }
 }

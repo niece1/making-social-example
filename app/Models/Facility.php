@@ -12,7 +12,8 @@ class Facility extends Model
 
     protected $guarded = [];
 
-    public function newCollection (array $models = []) {
+    public function newCollection(array $models = [])
+    {
         return new FacilityDatabaseCollection($models);
     }
 }

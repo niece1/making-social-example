@@ -9,10 +9,11 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Post;
 use App\Posts\PostType;
 
-
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -44,7 +45,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     /**
      * Whom we are following
      */
@@ -57,20 +58,20 @@ class User extends Authenticatable
             'following_id'
         );
     }
-    
+
     /**
      * Who's following us
      */
     public function followers()
     {
         return $this->belongsToMany(
-            User::class, 
+            User::class,
             'followers',
             'following_id',
             'user_id'
         );
     }
-    
+
     /**
      * Get all posts of the follower.
      */
@@ -85,7 +86,7 @@ class User extends Authenticatable
             'following_id'
         );
     }
-    
+
     /**
      * Get avatars from specified below service.
      *
@@ -95,7 +96,7 @@ class User extends Authenticatable
     {
         return 'https://www.gravatar.com/avatar/' . md5($this->email) . '?d=mp';
     }
-    
+
     /**
      * Undocumented function
      *

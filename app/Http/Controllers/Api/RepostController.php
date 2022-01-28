@@ -16,7 +16,7 @@ class RepostController extends Controller
     {
         $this->middleware(['auth:sanctum']);
     }
-    
+
     public function store(Post $post, Request $request)
     {
         $repost = $request->user()->posts()->create([

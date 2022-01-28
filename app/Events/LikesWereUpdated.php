@@ -14,8 +14,10 @@ use App\Models\User;
 
 class LikesWereUpdated implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
-    
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
+
     protected $user;
     protected $post;
 

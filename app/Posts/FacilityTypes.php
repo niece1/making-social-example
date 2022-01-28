@@ -4,6 +4,6 @@ namespace App\Posts;
 
 class FacilityTypes
 {
-    const HASHTAG = 'hashtag';
-    const MENTION = 'mention';
+    public const HASHTAG = 'hashtag';
+    public const MENTION = 'mention';
 }
