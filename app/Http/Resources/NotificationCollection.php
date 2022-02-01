@@ -7,6 +7,11 @@ use App\Http\Resources\NotificationResource;
 
 class NotificationCollection extends ResourceCollection
 {
+    /**
+     * The resource that this resource collects.
+     *
+     * @var string
+     */
     public $collects = NotificationResource::class;
 
     /**

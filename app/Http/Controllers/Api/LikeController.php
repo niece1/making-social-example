@@ -10,6 +10,13 @@ use App\Notifications\PostLiked;
 
 class LikeController extends Controller
 {
+    /**
+     * Store a new like.
+     *
+     * @param  \App\Models\Post  $post
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Post $post, Request $request)
     {
         //to prevent liking more then once
@@ -25,7 +32,14 @@ class LikeController extends Controller
 
         broadcast(new LikesWereUpdated($request->user(), $post));
     }
-
+    
+    /**
+     * Delete the like.
+     *
+     * @param  \App\Models\Post  $post
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy(Post $post, Request $request)
     {
         $request->user()->likes->where('post_id', $post->id)->first()->delete();

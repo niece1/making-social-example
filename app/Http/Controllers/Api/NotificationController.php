@@ -8,16 +8,21 @@ use App\Http\Resources\NotificationCollection;
 
 class NotificationController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware(['auth:sanctum']);
     }
 
     /**
-     * Undocumented function
+     * Get a list of notifications.
      *
      * @param Request $request
-     * @return void
+     * @return NotificationCollection|\Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {

@@ -8,6 +8,11 @@ use App\Posts\MediaTypes;
 
 class MediaTypesController extends Controller
 {
+    /**
+     * Fetch a media types array.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index()
     {
         return response()->json([

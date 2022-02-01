@@ -16,12 +16,18 @@ class PostWasDeleted implements ShouldBroadcast
     use Dispatchable;
     use InteractsWithSockets;
     use SerializesModels;
-
+    
+    /**
+     * The post instance.
+     *
+     * @var \App\Models\Post
+     */
     protected $post;
 
     /**
      * Create a new event instance.
      *
+     * @param  \App\Models\Post  $post
      * @return void
      */
     public function __construct(Post $post)
@@ -40,9 +46,9 @@ class PostWasDeleted implements ShouldBroadcast
     }
 
     /**
-     * Undocumented function
+     * Get the data to broadcast.
      *
-     * @return void
+     * @return array
      */
     public function broadcastWith()
     {
@@ -52,9 +58,9 @@ class PostWasDeleted implements ShouldBroadcast
     }
 
     /**
-     * Undocumented function
+     * The event's broadcast name.
      *
-     * @return void
+     * @return string
      */
     public function broadcastAs()
     {

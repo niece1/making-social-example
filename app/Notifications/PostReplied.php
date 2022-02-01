@@ -17,22 +17,24 @@ class PostReplied extends Notification
     use Queueable;
 
     /**
-     * Undocumented variable
+     * The user instance.
      *
-     * @var [type]
+     * @var \App\Models\User
      */
     protected $user;
 
     /**
-     * Undocumented variable
+     * The post instance.
      *
-     * @var [type]
+     * @var \App\Models\Post
      */
     protected $post;
 
     /**
      * Create a new notification instance.
      *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
      * @return void
      */
     public function __construct(User $user, Post $post)

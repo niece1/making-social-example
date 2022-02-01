@@ -12,11 +12,23 @@ use App\Events\PostWasDeleted;
 
 class RepostController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware(['auth:sanctum']);
     }
-
+    
+    /**
+     * Store a new repost.
+     *
+     * @param \App\Models\Post $post
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Post $post, Request $request)
     {
         $repost = $request->user()->posts()->create([
@@ -26,7 +38,14 @@ class RepostController extends Controller
         broadcast(new PostWasCreated($repost));
         broadcast(new RepostWasUpdated($request->user(), $post));
     }
-
+    
+    /**
+     * Delete (unrepost) a post.
+     *
+     * @param  \App\Models\Post  $post
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy(Post $post, Request $request)
     {
         broadcast(new PostWasDeleted($post->repostedPost));

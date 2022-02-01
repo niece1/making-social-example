@@ -17,12 +17,18 @@ class PostWasCreated implements ShouldBroadcast
     use Dispatchable;
     use InteractsWithSockets;
     use SerializesModels;
-
+    
+    /**
+     * The post instance.
+     *
+     * @var \App\Models\Post
+     */
     protected $post;
 
     /**
      * Create a new event instance.
      *
+     * @param  \App\Models\Post  $post
      * @return void
      */
     public function __construct(Post $post)
@@ -33,7 +39,7 @@ class PostWasCreated implements ShouldBroadcast
     /**
      * Overrides default event name given by the Laravel exposed in Websockets dashboard.
      *
-     * @return void
+     * @return string
      */
     public function broadcastAs()
     {

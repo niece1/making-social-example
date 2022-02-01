@@ -24,16 +24,17 @@ class Post extends Model
         'original_post_id',
         'parent_id',
     ];
-
+    
+    /**
+     * Get user record that owns the post.
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
     /**
-     * Undocumented function
-     *
-     * @return void
+     * Get original post id of the post.
      */
     public function originalPost()
     {
@@ -47,35 +48,44 @@ class Post extends Model
     {
         return $this->hasMany(Like::class);
     }
-
+    
+    /**
+     * Get reposts associated with specified post.
+     */
     public function reposts()
     {
         return $this->hasMany(Post::class, 'original_post_id');
     }
-
+    
+    /**
+     * Reposted post has one original post.
+     */
     public function repostedPost()
     {
         return $this->hasOne(Post::class, 'original_post_id', 'id');
     }
 
     /**
-     * Undocumented function
+     * Get medias associated with specified post.
      */
     public function media()
     {
         return $this->hasMany(PostMedia::class);
     }
-
+    
+    /**
+     * Get replies associated with specified post.
+     */
     public function replies()
     {
         return $this->hasMany(Post::class, 'parent_id');
     }
 
     /**
-     * Undocumented function
+     * Scope a query to only include original posts.
      *
      * @param Builder $builder
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeParent(Builder $builder)
     {
@@ -83,13 +93,18 @@ class Post extends Model
     }
 
     /**
-     * Undocumented function
+     * Get facilities associated with specified post.
      */
     public function facilities()
     {
         return $this->hasMany(Facility::class);
     }
-
+    
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
     public static function boot()
     {
         parent::boot();
@@ -99,18 +114,29 @@ class Post extends Model
             );
         });
     }
-
+    
+    /**
+     * Get mentions associated with specified post.
+     */
     public function mentions()
     {
         return $this->hasMany(Facility::class)
             ->whereType(FacilityTypes::MENTION);
     }
-
+    
+    /**
+     * Get a parent post of the current post.
+     */
     public function parentPost()
     {
         return $this->belongsTo(Post::class, 'parent_id');
     }
-
+    
+    /**
+     * Get parent post collection.
+     *
+     * @return Illuminate\Database\Eloquent\Collection
+     */
     public function parents()
     {
         $base = $this;

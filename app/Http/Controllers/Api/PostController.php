@@ -15,7 +15,9 @@ use App\Notifications\PostMentionedIn;
 class PostController extends Controller
 {
     /**
-     * Undocumented function
+     * Instantiate a new controller instance.
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -23,10 +25,10 @@ class PostController extends Controller
     }
 
     /**
-     * Undocumented function
+     * Get a post list of the particular user.
      *
      * @param Request $request
-     * @return void
+     * @return PostCollection|\Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
@@ -45,17 +47,23 @@ class PostController extends Controller
 
         return new PostCollection($posts);
     }
-
+    
+    /**
+     * Get a specified post.
+     *
+     * @param \App\Models\Post $post
+     * @return PostCollection|\Illuminate\Http\JsonResponse
+     */
     public function show(Post $post)
     {
         return new PostCollection(collect([$post])->merge($post->parents()));
     }
 
     /**
-     * Undocumented function
+     * Store a new post.
      *
-     * @param PostStoreRequest $request
-     * @return void
+     * @param \App\Http\Requests\PostStoreRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(PostStoreRequest $request)
     {

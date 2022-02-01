@@ -18,7 +18,7 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
         'name',
@@ -30,7 +30,7 @@ class User extends Authenticatable
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $hidden = [
         'password',
@@ -40,36 +40,26 @@ class User extends Authenticatable
     /**
      * The attributes that should be cast.
      *
-     * @var array<string, string>
+     * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
     /**
-     * Whom we are following
+     * Whom we are following.
      */
     public function following()
     {
-        return $this->belongsToMany(
-            User::class,
-            'followers',
-            'user_id',
-            'following_id'
-        );
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'following_id');
     }
 
     /**
-     * Who's following us
+     * Who's following us.
      */
     public function followers()
     {
-        return $this->belongsToMany(
-            User::class,
-            'followers',
-            'following_id',
-            'user_id'
-        );
+        return $this->belongsToMany(User::class, 'followers', 'following_id', 'user_id');
     }
 
     /**
@@ -98,15 +88,16 @@ class User extends Authenticatable
     }
 
     /**
-     * Undocumented function
-     *
-     * @return void
+     * Get posts associated with specified user.
      */
     public function posts()
     {
         return $this->hasMany(Post::class);
     }
-
+    
+    /**
+     * Get likes associated with specified user.
+     */
     public function likes()
     {
         return $this->hasMany(Like::class);
@@ -122,7 +113,10 @@ class User extends Authenticatable
     {
         return $this->likes->contains('post_id', $post->id);
     }
-
+    
+    /**
+     * Get reposts associated with specified user.
+     */
     public function reposts()
     {
         return $this->hasMany(Post::class)

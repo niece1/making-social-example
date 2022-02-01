@@ -7,6 +7,11 @@ use App\Http\Resources\PostMediaResource;
 
 class PostMediaCollection extends ResourceCollection
 {
+    /**
+     * The resource that this resource collects.
+     *
+     * @var string
+     */
     public $collects = PostMediaResource::class;
 
     /**

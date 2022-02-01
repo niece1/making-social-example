@@ -11,11 +11,23 @@ use App\Models\Post;
 
 class QuoteController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware(['auth:sanctum']);
     }
-
+    
+    /**
+     * Store a new quote post.
+     *
+     * @param \App\Models\Post $post
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Post $post, Request $request)
     {
         $repost = $request->user()->posts()->create([

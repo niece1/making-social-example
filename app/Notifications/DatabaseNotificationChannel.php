@@ -11,6 +11,13 @@ use Illuminate\Notifications\Notification;
  */
 class DatabaseNotificationChannel
 {
+    /**
+     * Send custom notification that comprises type.
+     *
+     * @param  mixed  $notifiable
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     public function send($notifiable, Notification $notification)
     {
         $data = $notification->toArray($notifiable);

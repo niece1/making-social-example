@@ -8,8 +8,9 @@ use App\Http\Resources\PostResource;
 class PostCollection extends ResourceCollection
 {
     /**
+     * The resource that this resource collects.
      *
-     * @var type
+     * @var string
      */
     public $collects = PostResource::class;
 
@@ -25,7 +26,13 @@ class PostCollection extends ResourceCollection
             'data' => $this->collection
         ];
     }
-
+    
+    /**
+     * Get additional data that should be returned with the resource array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
     public function with($request)
     {
         return [
@@ -35,14 +42,19 @@ class PostCollection extends ResourceCollection
             ]
         ];
     }
-
+    
+    /**
+     * Get users likes associated with post.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
     protected function likes($request)
     {
         //if user not logged in, we don't need it's likes number so we return empty array
         if (!$user = $request->user()) {
             return [];
         }
-
         return $user->likes()
             ->whereIn(
                 'post_id',
@@ -51,13 +63,18 @@ class PostCollection extends ResourceCollection
             ->pluck('post_id')
             ->toArray();
     }
-
+    
+    /**
+     * Get users reposts associated with post.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
     protected function reposts($request)
     {
         if (!$user = $request->user()) {
             return [];
         }
-
         return $user->reposts()
             ->whereIn(
                 'original_post_id',

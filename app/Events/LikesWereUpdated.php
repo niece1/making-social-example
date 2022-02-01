@@ -17,13 +17,26 @@ class LikesWereUpdated implements ShouldBroadcast
     use Dispatchable;
     use InteractsWithSockets;
     use SerializesModels;
-
+    
+    /**
+     * The user instance.
+     *
+     * @var \App\Models\User
+     */
     protected $user;
+
+    /**
+     * The post instance.
+     *
+     * @var \App\Models\Post
+     */
     protected $post;
 
     /**
      * Create a new event instance.
      *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
      * @return void
      */
     public function __construct(User $user, Post $post)
@@ -43,9 +56,9 @@ class LikesWereUpdated implements ShouldBroadcast
     }
 
     /**
-     * Undocumented function
+     * The event's broadcast name.
      *
-     * @return void
+     * @return string
      */
     public function broadcastAs()
     {
@@ -53,9 +66,9 @@ class LikesWereUpdated implements ShouldBroadcast
     }
 
     /**
-     * Undocumented function
+     * Get the data to broadcast.
      *
-     * @return void
+     * @return array
      */
     public function broadcastWith()
     {

@@ -12,7 +12,10 @@ class PostMedia extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
-
+    
+    /**
+     * Get all the media of the post that belongs to media table.
+     */
     public function baseMedia()
     {
         return $this->belongsTo(Media::class, 'media_id');

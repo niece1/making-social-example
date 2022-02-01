@@ -10,16 +10,21 @@ use App\Http\Resources\PostMediaCollection;
 
 class MediaController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware(['auth:sanctum']);
     }
 
     /**
-     * Undocumented function
+     * Store a new media.
      *
-     * @param Request $request
-     * @return void
+     * @param  \App\Http\Requests\MediaStoreRequest  $request
+     * @return PostMediaCollection|\Illuminate\Http\JsonResponse
      */
     public function store(MediaStoreRequest $request)
     {
@@ -31,10 +36,10 @@ class MediaController extends Controller
     }
 
     /**
-     * Undocumented function
+     * Add array of media to the post.
      *
-     * @param [type] $media
-     * @return void
+     * @param \App\Models\Media $media
+     * @return array $postMedia
      */
     protected function addMedia($media)
     {

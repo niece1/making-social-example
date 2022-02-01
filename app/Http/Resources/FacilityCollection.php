@@ -7,6 +7,11 @@ use App\Http\Resources\FacilityResource;
 
 class FacilityCollection extends ResourceCollection
 {
+    /**
+     * The resource that this resource collects.
+     *
+     * @var string
+     */
     public $collects = FacilityResource::class;
 
     /**

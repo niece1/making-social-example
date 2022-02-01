@@ -7,26 +7,31 @@ use App\Posts\FacilityTypes;
 class FacilityExtractor
 {
     /**
-     * Undocumented variable
+     * Mention or hashtag.
      *
-     * @var [type]
+     * @var string
      */
     protected $string;
 
     /**
+     * Regular expression for facility type hashtag.
      *
+     * @var string
      */
     public const HASHTAG_REGEX = '/(?!\s)#([A-Za-z]\w*)\b/';
 
     /**
+     * Regular expression for facility type mention.
      *
+     * @var string
      */
     public const MENTION_REGEX = '/(?=[^\w!])@(\w+)\b/';
 
     /**
-     * Undocumented function
+     * Create a new instance.
      *
-     * @param [type] $string
+     * @param $string
+     * @return void
      */
     public function __construct($string)
     {
@@ -34,9 +39,9 @@ class FacilityExtractor
     }
 
     /**
-     * Undocumented function
+     * Extract hashtag facility.
      *
-     * @return void
+     * @return array
      */
     public function getHashtagFacilities()
     {
@@ -47,9 +52,9 @@ class FacilityExtractor
     }
 
     /**
-     * Undocumented function
+     * Extract mention facility.
      *
-     * @return void
+     * @return array
      */
     public function getMentionFacilities()
     {
@@ -60,9 +65,9 @@ class FacilityExtractor
     }
 
     /**
-     * Undocumented function
+     * Get hashtag and mention facilities.
      *
-     * @return void
+     * @return array
      */
     public function getAllFacilities()
     {
@@ -70,11 +75,11 @@ class FacilityExtractor
     }
 
     /**
-     * Undocumented function
+     * Create facility collection and populate model with data.
      *
-     * @param [type] $facilities
-     * @param [type] $type
-     * @return void
+     * @param array $facilities
+     * @param string $type
+     * @return array
      */
     protected function buildFacilityCollection($facilities, $type)
     {
@@ -90,10 +95,10 @@ class FacilityExtractor
     }
 
     /**
-     * Undocumented function
+     * Searches for all facility matches.
      *
-     * @param [type] $pattern
-     * @return void
+     * @param string $pattern
+     * @return array
      */
     protected function match($pattern)
     {
