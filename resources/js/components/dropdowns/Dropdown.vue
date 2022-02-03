@@ -18,13 +18,11 @@
         open: false
       }
     },
-
     methods: {
       close () {
         this.open = false
       }
     },
-
     directives: {
       ClickOutside
     }

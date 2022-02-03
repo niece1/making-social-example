@@ -2,9 +2,8 @@
   <div>
     <dropdown v-if="!reposted">
       <template slot="trigger">
-          <repost-button :post="post" />
+        <repost-button :post="post" />
       </template>
-
       <dropdown-link @click.prevent="repost_unrepost">
         Repost
       </dropdown-link>
@@ -17,9 +16,10 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import RepostModal from '../../modals/RepostModal'
-export default {
+  import { mapGetters, mapActions } from 'vuex'
+  import RepostModal from '../../modals/RepostModal'
+  
+  export default {
     props: {
       post: {
         required: true,
@@ -44,15 +44,13 @@ export default {
         repostPost: 'reposts/repostPost',
         unrepostPost: 'reposts/unrepostPost',
       }),
-
       repost_unrepost () {
         if (this.reposted) {
           this.unrepostPost(this.post)
           return
         }
-
         this.repostPost(this.post)
       }
     }
-}
+  }
 </script>

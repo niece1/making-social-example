@@ -7,7 +7,6 @@ export default {
   state: {
     likes: []
   },
-
   getters: {
     likes (state) {
       return state.likes
@@ -21,19 +20,15 @@ export default {
     PUSH_LIKE (state, id) {
       state.likes.push(id)
     },
-
     POP_LIKE (state, id) {
       state.likes = without(state.likes, id)//give us back the list likes w/o particular id
     }
-
   },
-
   actions: {
     //_ is a convention to add required thing we don't need (no necessity to commit, because we use realtime)
     async likePost (_, post) {
       await axios.post(`/api/posts/${post.id}/likes`)
     },
-
     async dislikePost (_, post) {
       await axios.delete(`/api/posts/${post.id}/likes`)
     },
@@ -46,6 +41,5 @@ export default {
       // otherwise add like to the list of likes
       commit('PUSH_LIKE', id)
     }
-
   }
 }

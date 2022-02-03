@@ -11,13 +11,13 @@ import VueObserveVisibility from 'vue-observe-visibility'
 Vue.use(VueObserveVisibility)
 import VModal from 'vue-js-modal'
 Vue.use(VModal, {
-    dynamic: true,
-    injectModalsContainer: true,
-    dynamicDefaults: {
-        pivotY: 0.1,
-        height: 'auto',
-        classes: '!bg-gray-900 rounded-lg p-4'
-    }
+  dynamic: true,
+  injectModalsContainer: true,
+  dynamicDefaults: {
+    pivotY: 0.1,
+    height: 'auto',
+    classes: '!bg-gray-900 rounded-lg p-4'
+  }
 })
 Vue.prototype.$user = User // we use global user object and bind into Vue (set in layout app.blade.php)
 
@@ -32,45 +32,45 @@ import notifications from './store/notifications'
 import chat from './store/chat'
 
 const store = new Vuex.Store({
-    modules: {
-        timeline,
-        likes,
-        reposts,
-        notifications,
-        chat
-    }
+  modules: {
+    timeline,
+    likes,
+    reposts,
+    notifications,
+    chat
+  }
 })
 const app = new Vue({
-    el: '#app',
-    store
+  el: '#app',
+  store
 });
 
 Echo.channel('posts')
-    .listen('.LikesWereUpdated', (e) => {
-        //if user id on this event
-        if (e.user_id === User.id) {
-            store.dispatch('likes/syncLike', e.id)
-        }
-        store.commit('timeline/SET_LIKES', e)
-        //for realtime likes in notifications
-        store.commit('notifications/SET_LIKES', e)
-        store.commit('chat/SET_LIKES', e)
-    })
-    .listen('.RepostWasUpdated', (e) => {
-        if (e.user_id === User.id) {
-            store.dispatch('reposts/syncRepost', e.id)
-        }
-        store.commit('timeline/SET_REPOSTS', e)
-        //for realtime reposts in notifications
-        store.commit('notifications/SET_REPOSTS', e)
-        store.commit('chat/SET_REPOSTS', e)
-    })
-    .listen('.PostWasDeleted', (e) => {
-        store.commit('timeline/POP_POST', e.id)
-    })
-    .listen('.RepliesWereUpdated', (e) => {
-        store.commit('timeline/SET_REPLIES', e)
-        //for realtime replies in notifications
-        store.commit('notifications/SET_REPLIES', e)
-        store.commit('chat/SET_REPLIES', e)
-    })
+.listen('.LikesWereUpdated', (e) => {
+  //if user id on this event
+  if (e.user_id === User.id) {
+    store.dispatch('likes/syncLike', e.id)
+  }
+  store.commit('timeline/SET_LIKES', e)
+  //for realtime likes in notifications
+  store.commit('notifications/SET_LIKES', e)
+  store.commit('chat/SET_LIKES', e)
+})
+.listen('.RepostWasUpdated', (e) => {
+  if (e.user_id === User.id) {
+    store.dispatch('reposts/syncRepost', e.id)
+  }
+  store.commit('timeline/SET_REPOSTS', e)
+  //for realtime reposts in notifications
+  store.commit('notifications/SET_REPOSTS', e)
+  store.commit('chat/SET_REPOSTS', e)
+})
+.listen('.PostWasDeleted', (e) => {
+  store.commit('timeline/POP_POST', e.id)
+})
+.listen('.RepliesWereUpdated', (e) => {
+  store.commit('timeline/SET_REPLIES', e)
+  //for realtime replies in notifications
+  store.commit('notifications/SET_REPLIES', e)
+  store.commit('chat/SET_REPLIES', e)
+})

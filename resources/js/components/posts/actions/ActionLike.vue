@@ -10,19 +10,18 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-export default {
+  import { mapGetters, mapActions } from 'vuex'
+  export default {
     props: {
-        post: {
-            required: true,
-            type: Object
-        }
+      post: {
+        required: true,
+        type: Object
+      }
     },
     computed: {
       ...mapGetters({
         likes: 'likes/likes'
       }),
-
       liked () {
         //if post id within array of likes
         return this.likes.includes(this.post.id)
@@ -33,19 +32,13 @@ export default {
         likePost: 'likes/likePost',
         dislikePost: 'likes/dislikePost',
       }),
-
       like_dislike () {
         if (this.liked) {
           this.dislikePost(this.post)
           return
         }
-
         this.likePost(this.post)
       }
     }
-}
+  }
 </script>
-
-<style lang='scss' scoped>
-
-</style>

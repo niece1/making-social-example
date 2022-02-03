@@ -6,13 +6,11 @@ export default {
   state: {
     reposts: []
   },
-
   getters: {
     reposts (state) {
       return state.reposts
     }
   },
-
   mutations: {
     PUSH_REPOSTS (state, data) {
       state.reposts.push(...data)
@@ -24,7 +22,6 @@ export default {
       state.reposts = without(state.reposts, id)
     }
   },
-
   actions: {
     async repostPost (_, post) {
       await axios.post(`/api/posts/${post.id}/reposts`)

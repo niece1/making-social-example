@@ -9,9 +9,7 @@
           <div>
             <create-indicator class="mr-2" :body="form.body" />
           </div>
-          <button type="submit" class="bg-blue-500 rounded-full text-gray-300 text-center px-4 py-3 font-bold leading-none">
-            Repost
-          </button>
+          <button type="submit" class="bg-blue-500 rounded-full text-gray-300 text-center px-4 py-3 font-bold leading-none">Repost</button>
         </div>
       </div>
     </div>
